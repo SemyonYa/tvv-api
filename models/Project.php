@@ -70,4 +70,29 @@ class Project extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Place::className(), ['id' => 'place_id']);
     }
+
+        /**
+     * Gets query for [[CtorItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItems()
+    {
+        return $this->hasMany(CtorItem::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Thumb]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getThumb()
+    {
+        return $this->hasOne(Image::className(), ['id' => 'thumb_id']);
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['items', 'thumb']);
+    }
 }

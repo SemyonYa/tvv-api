@@ -57,6 +57,26 @@ class Place extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[CtorItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItems()
+    {
+        return $this->hasMany(CtorItem::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Thumb]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getThumb()
+    {
+        return $this->hasOne(Image::className(), ['id' => 'thumb_id']);
+    }
+
+    /**
      * Gets query for [[Projects]].
      *
      * @return \yii\db\ActiveQuery
@@ -64,5 +84,10 @@ class Place extends \yii\db\ActiveRecord
     public function getProjects()
     {
         return $this->hasMany(Project::className(), ['place_id' => 'id']);
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['items', 'projects', 'thumb']);
     }
 }

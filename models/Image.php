@@ -15,20 +15,23 @@ use yii\imagine\Image as ImagineImage;
  * @property int $id
  * @property string $name
  * @property int $project_id 
+ * @property string $period
  */
 class Image extends \yii\db\ActiveRecord
 {
 
-    public function __construct($name = '')
+    public function __construct($name = '', $project_id = null, $period = null)
     {
         $this->name = $name;
+        $this->project_id = $project_id;
+        $this->period = $period;
     }
 
-    private $allowable_extetions = [
-        'jpg',
-        'png',
-        // 'svg'
-    ];
+    // private $allowable_extetions = [
+    //     'jpg',
+    //     'png',
+    //     // 'svg'
+    // ];
 
     public static function tableName()
     {

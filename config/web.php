@@ -53,7 +53,33 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['image', 'place', 'project'],
+                    'controller' => ['image', 'place'],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['image'],
+                    'extraPatterns' => [
+                        'GET by-params' => 'index'
+                        // 'POST <id>/children' => 'children',
+                        // 'OPTIONS <id>/children' => 'options'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['place'],
+                    'extraPatterns' => [
+                        'GET <region>' => 'index',
+                        'POST <id>/children' => 'children',
+                        'OPTIONS <id>/children' => 'options'
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['project'],
+                    'extraPatterns' => [
+                        'POST <id>/children' => 'children',
+                        'OPTIONS <id>/children' => 'options'
+                    ]
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
